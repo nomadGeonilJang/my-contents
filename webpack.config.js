@@ -1,7 +1,8 @@
 const path = require("path")
 const HTMLWebpackPlugin = require("html-webpack-plugin")
 const MiniCssExtractPlugin = require("mini-css-extract-plugin")
-
+const CopyPlugin = require("copy-webpack-plugin")
+const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 
 const isProduction = process.env.NODE_ENV === "PRODUCTION";
 
@@ -10,7 +11,7 @@ module.exports = {
     entry:"./src/app.js",
     output:{
         path:path.resolve(__dirname, "build"),
-        filename:`[name].[chunkhash].js`
+        filename:`[name].[chunkhash].js`,
     },
     module:{
         rules:[
@@ -27,10 +28,31 @@ module.exports = {
                         }
                     }
                 ]
+            },
+            {
+                test:/\.(png|jep?g|gif)$/i,
+                use:[{
+                    loader:'file-loader',
+                    options:{
+                        name(){ //함수를 사용해서 개발환경에서 어떤 위지에 있는지 확인할 수 있도록 분기 처리 한다.
+                            if(!isProduction){
+                                return `[path][name].[ext]`
+                            }
+                            return `[contenthash].[ext]`
+                        },
+                        publicPath:'assets/', // [publicPatch]/hello.png 이런식이 된다
+                        outputPath:'assets/' //실제 생성 경로 // 폴더 구조가 하나 더 생긴
+                    }
+                }]
             }
         ]
     },
     plugins:[
+        new CopyPlugin({
+            patterns: [
+              { from: "src/assets", to: "assets" },
+            ],
+        }),
         new MiniCssExtractPlugin({
             filename:'[contenthash].css'
         }),
@@ -40,7 +62,10 @@ module.exports = {
             description:"Introduce world-renowned software engineer GI",
             author:"gi"
         },
-    })],
+        }),
+        new CleanWebpackPlugin()
+
+    ],
     devServer:{
         open:true, //실행시 자동으로 오픈
         overlay:true, //에러 발생시 페이지에 나오게
