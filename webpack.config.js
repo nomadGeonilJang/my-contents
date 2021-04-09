@@ -51,6 +51,7 @@ module.exports = {
         new CopyPlugin({
             patterns: [
               { from: "src/assets", to: "assets" },
+              { from: "favicon.ico", to: "favicon.ico" }
             ],
         }),
         new MiniCssExtractPlugin({
