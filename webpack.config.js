@@ -35,7 +35,11 @@ module.exports = {
             filename:'[contenthash].css'
         }),
         new HTMLWebpackPlugin({
-        template:path.resolve(__dirname,"index.html")
+        template:path.resolve(__dirname,"index.html"),
+        meta:{
+            description:"Introduce world-renowned software engineer GI",
+            author:"gi"
+        },
     })],
     devServer:{
         open:true, //실행시 자동으로 오픈

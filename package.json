@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "NODE_ENV=DEVELOPMENT webpack-dev-server",
-    "build":"NODE_ENV=PRODUCTION webpack"
+    "build": "NODE_ENV=PRODUCTION webpack"
   },
   "repository": {
     "type": "git",
@@ -26,5 +26,6 @@
     "webpack": "^5.31.0",
     "webpack-cli": "^3.3.12",
     "webpack-dev-server": "^3.11.2"
-  }
+  },
+  "dependencies": {}
 }
