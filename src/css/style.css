@@ -70,6 +70,13 @@ h3{
     margin:4px 0;
 }
 
+button{
+    background-color: transparent;
+    cursor: pointer;
+    border:none;
+    outline: none;
+}
+
 a:hover,
 a:focus {
   color: var(--on-background);
@@ -206,4 +213,33 @@ nav#navbar{
 .navbar__menu__item.active{
     color: var(--on-background);
     border-bottom: 3px solid;
+}
+
+/* home */
+
+#home{
+    padding: 60px 40px;
+    text-align: center;
+}
+
+.home__avatar{
+    width: 250px;
+    height: 250px;
+    border-radius: 50%;
+    border:2px solid var(--secondary-color);
+}
+
+.home__title,
+.home__description{
+    color:var(--primary-color);
+}
+
+.home__contack{
+    font-size: var(--font-regular);
+    font-weight: var(--weight-semi-bold);
+    margin:24px;
+    padding: 8px 12px;
+    border:2px solid var(--primary-color);
+    border-radius: var(--border-radius);
+    color:var(--primary-color);
 }
