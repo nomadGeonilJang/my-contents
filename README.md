@@ -1,2 +1,2 @@
 # my-contents
-my-contents
+my-content
